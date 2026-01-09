@@ -34,6 +34,15 @@ if __name__ == "__main__":
     uvicorn.run(app)
 ```
 
+## Real Example
+
+For a complete, production-ready example including authentication, relationships, and custom endpoints, check out the [Simple App Example](examples/simple_app).
+
+This example demonstrates:
+- **Custom Models & Schemas**: Using SQLAlchemy models with relationships (User <-> Items).
+- **Authentication**: JWT authentication with protected routes.
+- **Custom Endpoints**: Advanced filtering and eager loading to prevent N+1 queries.
+
 ## Requirements
 
 - Python 3.10+
