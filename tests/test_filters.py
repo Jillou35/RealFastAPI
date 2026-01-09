@@ -55,9 +55,9 @@ def test_parse_filters_unit():
 
 
 @pytest.mark.asyncio
-async def test_filters_integration(db_engine, db_session):
+async def test_filters_integration(db_instance, db_session):
     # Setup
-    async with db_engine.begin() as conn:
+    async with db_instance.engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
     from fasterapi.crud.base import BaseCRUD
@@ -164,5 +164,5 @@ async def test_filters_integration(db_engine, db_session):
     assert names_sort_multi_desc == ["Alice", "Bob", "Charlie", "David"]
 
     # Cleanup
-    async with db_engine.begin() as conn:
+    async with db_instance.engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)

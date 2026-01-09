@@ -49,7 +49,7 @@ class ChildCreate(BaseModel):
 
 # --- Test ---
 @pytest.mark.asyncio
-async def test_relationship_loading(db_engine, db_session):
+async def test_relationship_loading(db_instance, db_session):
     # Setup App (minimal)
     db_config = DatabaseConfig(url="sqlite+aiosqlite:///:memory:")
     config = FasterAPIConfig(db_config=db_config)
@@ -58,7 +58,7 @@ async def test_relationship_loading(db_engine, db_session):
     # To test BaseCRUD logic directly, we can use the fixture session.
 
     # Create tables
-    async with db_engine.begin() as conn:
+    async with db_instance.engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
     # Insert Data
@@ -110,5 +110,5 @@ async def test_relationship_loading(db_engine, db_session):
     assert len(pydantic_parent.children) == 2
 
     # Cleanup
-    async with db_engine.begin() as conn:
+    async with db_instance.engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
