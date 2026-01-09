@@ -24,7 +24,6 @@ class AuthConfig(BaseSettings):
 
 class FasterAPIConfig(BaseSettings):
     title: str = "FasterAPI App"
-    version: str = "0.1.0"
     db_config: Optional[DatabaseConfig] = None
     auth_config: Optional[AuthConfig] = None
 
@@ -48,7 +47,6 @@ class FasterAPI(FastAPI):
 
         super().__init__(
             title=config.title,
-            version=config.version,
             lifespan=default_lifespan,
             **kwargs,
         )

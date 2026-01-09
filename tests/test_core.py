@@ -10,16 +10,14 @@ from fasterapi.core import FasterAPI, FasterAPIConfig, DatabaseConfig
 def test_config_defaults():
     config = FasterAPIConfig()
     assert config.title == "FasterAPI App"
-    assert config.version == "0.1.0"
     assert config.db_config is None
 
 
 def test_init_without_db():
-    config = FasterAPIConfig(title="My App", version="1.0")
+    config = FasterAPIConfig(title="My App")
     app = FasterAPI(config)
 
     assert app.title == "My App"
-    assert app.version == "1.0"
     assert app.db is None
 
 
